@@ -6,7 +6,7 @@ on:
       - main
   workflow_dispatch:
   schedule:
-    - cron: '0,30 * * * *'  # every 30 minutes UTC
+    - cron: '*/30 * * * *'   # every 30 minutes (UTC)
 
 jobs:
   run-alert:
@@ -16,16 +16,17 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
       - name: Install dependencies
         run: |
-          pip install requests
+          pip install --upgrade pip
+          pip install -r requirements.txt
 
-      - name: Run alert script
+      - name: Run BSE alert script
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
