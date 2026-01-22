@@ -2,39 +2,33 @@ name: Run Telegram Alert Script
 
 # Triggers
 on:
-  push:
+  push:           # First push triggers immediately
     branches:
-      - main      # Trigger on push to main branch
-  workflow_dispatch:  # Manual trigger from GitHub UI
+      - main
+  workflow_dispatch:  # Manual trigger
   schedule:
-    - cron: '*/15 * * * *'  # Every 15 minutes (UTC)
+    - cron: '0,30 * * * *'  # Runs every 30 minutes (UTC)
 
 jobs:
   run-alert:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout your repo
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Set up Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.14'
 
-      # Step 3: Install dependencies
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # Step 4: Run Telegram script
       - name: Run Telegram script
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}  # Your bot token
-          CHANNEL_ID: ${{ secrets.CHANNEL_ID }}          # Your channel/chat ID
-        run: |
-          echo "DEBUG: Running Telegram Alert Script"
-          python AlertInfoProgram.py
+          CHANNEL_ID: ${{ secrets.CHANNEL_ID }}          # Your Telegram channel/chat ID
+        run: python AlertInfoProgram.py
