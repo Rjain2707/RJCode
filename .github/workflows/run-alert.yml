@@ -1,33 +1,39 @@
-name: Run Telegram Alert Script
+name: Run BSE Telegram Alert
 
+# Triggers
 on:
   push:
     branches:
-      - main
-  workflow_dispatch:
+      - main        # welcome message on every push
   schedule:
-    - cron: '*/30 * * * *'   # every 30 minutes UTC
+    - cron: '*/30 * * * *'  # every 30 minutes (UTC)
+  workflow_dispatch:        # optional manual run
 
 jobs:
   run-alert:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      # Step 1: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Python
+      # Step 2: Set up Python
+      - name: Set up Python 3.11
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
+      # Step 3: Install dependencies
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
+          pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run BSE alert script
+      # Step 4: Run the BSE alert script
+      - name: Run BSE Alert Script
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
         run: python AlertInfoProgram.py
