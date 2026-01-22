@@ -23,8 +23,15 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install --upgrade pip
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install selenium pandas python-dotenv
+
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Setup ChromeDriver
+        uses: nanasess/setup-chromedriver@v1
 
       - name: Run BSE alert script
         env:
