@@ -3,32 +3,31 @@ name: Run Telegram Alert Script
 on:
   push:
     branches:
-      - main        # first push triggers immediate run
-  workflow_dispatch:  # manual run
+      - main
+  workflow_dispatch:
   schedule:
-    - cron: '*/30 * * * *'  # every 30 minutes UTC
+    - cron: '0,30 * * * *'  # every 30 minutes UTC
 
 jobs:
   run-alert:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Set up Python
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.14'
+          python-version: '3.11'
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install beautifulsoup4
+          pip install requests
 
-      - name: Run Telegram script
+      - name: Run alert script
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
         run: python AlertInfoProgram.py
