@@ -30,4 +30,5 @@ jobs:
       - name: Run Telegram script
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}  # GitHub Secret
+          CHANNEL_ID: ${{ secrets.CHANNEL_ID }}          # GitHub Secret
         run: python AlertInfoProgram.py
