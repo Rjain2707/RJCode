@@ -1,0 +1,264 @@
+
+        <html>
+        <head>
+            <title>Interactive IPO Report</title>
+            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+            <style>
+                body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 40px; background-color: #f0f2f5; }
+                h2 { color: #2c3e50; text-align: center; margin-bottom: 5px; }
+                p { text-align: center; color: #7f8c8d; margin-bottom: 30px; }
+                .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); max-width: 1200px; margin: 0 auto; }
+                
+                table.dataTable thead th { background-color: #34495e; color: white; padding: 15px; text-align: center; }
+                table.dataTable tbody td { padding: 12px; text-align: center; }
+                .positive { color: #27ae60 !important; font-weight: bold; }
+                .negative { color: #e74c3c !important; font-weight: bold; }
+                .neutral { color: #95a5a6; font-weight: bold; }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <h2>📊 Low Subscription IPOs (≤ 5x) - Performance Tracker</h2>
+                <p>Filtered: Subscription ≤ 5x | Excludes NO_DATA managers | All Years</p>
+                
+                <table class="dataframe display nowrap" id="ipoTable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Lead Manager</th>
+      <th>Company</th>
+      <th>Issue (Rs.)</th>
+      <th>Listing/Mkt (Rs.)</th>
+      <th>Gain %</th>
+      <th>Subscription</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Hem Securities Ltd.</td>
+      <td>Aspire &amp; Innovative Advertising Ltd.</td>
+      <td>54.0</td>
+      <td>59.30</td>
+      <td>9.81</td>
+      <td>10.82</td>
+    </tr>
+    <tr>
+      <td>Hem Securities Ltd.</td>
+      <td>Unilex Colours &amp; Chemicals Ltd.</td>
+      <td>87.0</td>
+      <td>88.15</td>
+      <td>1.32</td>
+      <td>26.49</td>
+    </tr>
+    <tr>
+      <td>Hem Securities Ltd.</td>
+      <td>Aeron Composite Ltd.</td>
+      <td>125.0</td>
+      <td>157.50</td>
+      <td>26.00</td>
+      <td>27.61</td>
+    </tr>
+    <tr>
+      <td>Hem Securities Ltd.</td>
+      <td>Forge Auto International Ltd.</td>
+      <td>108.0</td>
+      <td>109.35</td>
+      <td>1.25</td>
+      <td>34.79</td>
+    </tr>
+    <tr>
+      <td>Hem Securities Ltd.</td>
+      <td>TGIF Agribusiness Ltd.</td>
+      <td>93.0</td>
+      <td>142.50</td>
+      <td>53.23</td>
+      <td>37.77</td>
+    </tr>
+    <tr>
+      <td>Hem Securities Ltd.</td>
+      <td>Blue Pebble Ltd.</td>
+      <td>168.0</td>
+      <td>208.95</td>
+      <td>24.37</td>
+      <td>39.53</td>
+    </tr>
+    <tr>
+      <td>Hem Securities Ltd.</td>
+      <td>Vision Infra Equipment Solutions Ltd.</td>
+      <td>163.0</td>
+      <td>215.25</td>
+      <td>32.06</td>
+      <td>47.93</td>
+    </tr>
+    <tr>
+      <td>Hem Securities Ltd.</td>
+      <td>Aimtron Electronics Ltd.</td>
+      <td>161.0</td>
+      <td>253.05</td>
+      <td>57.17</td>
+      <td>69.43</td>
+    </tr>
+    <tr>
+      <td>Hem Securities Ltd.</td>
+      <td>My Mudra Fincorp Ltd.</td>
+      <td>110.0</td>
+      <td>123.50</td>
+      <td>12.27</td>
+      <td>75.91</td>
+    </tr>
+    <tr>
+      <td>Hem Securities Ltd.</td>
+      <td>Premier Roadlines Ltd.</td>
+      <td>67.0</td>
+      <td>91.35</td>
+      <td>36.34</td>
+      <td>82.18</td>
+    </tr>
+    <tr>
+      <td>Hem Securities Ltd.</td>
+      <td>Sahasra Electronic Solutions Ltd.</td>
+      <td>283.0</td>
+      <td>564.55</td>
+      <td>99.49</td>
+      <td>85.72</td>
+    </tr>
+    <tr>
+      <td>Hem Securities Ltd.</td>
+      <td>Danish Power Ltd.</td>
+      <td>380.0</td>
+      <td>598.50</td>
+      <td>57.50</td>
+      <td>89.11</td>
+    </tr>
+    <tr>
+      <td>Hem Securities Ltd.</td>
+      <td>Shubhshree Biofuels Energy Ltd.</td>
+      <td>119.0</td>
+      <td>198.45</td>
+      <td>66.76</td>
+      <td>90.52</td>
+    </tr>
+    <tr>
+      <td>Hem Securities Ltd.</td>
+      <td>Enfuse Solutions Ltd.</td>
+      <td>96.0</td>
+      <td>115.45</td>
+      <td>20.26</td>
+      <td>119.59</td>
+    </tr>
+    <tr>
+      <td>Hem Securities Ltd.</td>
+      <td>Aprameya Engineering Ltd.</td>
+      <td>58.0</td>
+      <td>75.60</td>
+      <td>30.34</td>
+      <td>135.10</td>
+    </tr>
+    <tr>
+      <td>Hem Securities Ltd.</td>
+      <td>Chetana Education Ltd.</td>
+      <td>85.0</td>
+      <td>103.80</td>
+      <td>22.12</td>
+      <td>137.89</td>
+    </tr>
+    <tr>
+      <td>Hem Securities Ltd.</td>
+      <td>Vilas Transcore Ltd.</td>
+      <td>147.0</td>
+      <td>225.75</td>
+      <td>53.57</td>
+      <td>145.87</td>
+    </tr>
+    <tr>
+      <td>Hem Securities Ltd.</td>
+      <td>Aztec Fluids &amp; Machinery Ltd.</td>
+      <td>67.0</td>
+      <td>85.50</td>
+      <td>27.61</td>
+      <td>152.58</td>
+    </tr>
+    <tr>
+      <td>Hem Securities Ltd.</td>
+      <td>Ganesh Green Bharat Ltd.</td>
+      <td>190.0</td>
+      <td>398.00</td>
+      <td>109.47</td>
+      <td>161.77</td>
+    </tr>
+    <tr>
+      <td>Hem Securities Ltd.</td>
+      <td>Namo eWaste Management Ltd.</td>
+      <td>85.0</td>
+      <td>169.55</td>
+      <td>99.47</td>
+      <td>165.14</td>
+    </tr>
+    <tr>
+      <td>Hem Securities Ltd.</td>
+      <td>Sona Machinery Ltd.</td>
+      <td>143.0</td>
+      <td>0.00</td>
+      <td>NaN</td>
+      <td>190.97</td>
+    </tr>
+    <tr>
+      <td>Hem Securities Ltd.</td>
+      <td>Sunlite Recycling Industries Ltd.</td>
+      <td>105.0</td>
+      <td>209.45</td>
+      <td>99.48</td>
+      <td>207.95</td>
+    </tr>
+    <tr>
+      <td>Hem Securities Ltd.</td>
+      <td>Energy-Mission Machineries (India) Ltd.</td>
+      <td>138.0</td>
+      <td>384.25</td>
+      <td>178.44</td>
+      <td>222.46</td>
+    </tr>
+    <tr>
+      <td>Hem Securities Ltd.</td>
+      <td>WOL 3D India Ltd.</td>
+      <td>150.0</td>
+      <td>189.05</td>
+      <td>26.03</td>
+      <td>261.69</td>
+    </tr>
+  </tbody>
+</table>
+            </div>
+
+            <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+            <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+            
+            <script>
+                $(document).ready(function() {
+                    var table = $('#ipoTable').DataTable({
+                        "pageLength": 50,
+                        "order": [[5, "asc"]], // Default sort by Subscription (now column 5)
+                        "columnDefs": [
+                            {
+                                "targets": 4, // 'Gain %' column (now index 4 after removing Year)
+                                "createdCell": function (td, cellData, rowData, row, col) {
+                                    if (cellData === null || cellData === 'N/A') {
+                                        $(td).html('N/A').addClass('neutral');
+                                        return;
+                                    }
+                                    var val = parseFloat(cellData);
+                                    if (val > 0) {
+                                        $(td).addClass('positive').html('+' + val.toFixed(2) + '%');
+                                    } else if (val < 0) {
+                                        $(td).addClass('negative').html(val.toFixed(2) + '%');
+                                    } else {
+                                        $(td).addClass('neutral').html('0.00%');
+                                    }
+                                }
+                            }
+                        ]
+                    });
+                });
+            </script>
+        </body>
+        </html>
+        
