@@ -1,10 +1,13 @@
 name: Run Telegram Alert Script
 
+# Triggers
 on:
   push:
     branches:
       - main
-  workflow_dispatch:  # allows manual trigger
+  workflow_dispatch:  # manual trigger
+  schedule:
+    - cron: '*/15 * * * *'  # runs every 15 minutes (UTC)
 
 jobs:
   run-alert:
@@ -26,6 +29,5 @@ jobs:
 
       - name: Run Telegram script
         env:
-          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}  # your secret
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}  # GitHub Secret
         run: python AlertInfoProgram.py
-
