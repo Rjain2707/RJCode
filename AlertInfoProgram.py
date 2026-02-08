@@ -183,7 +183,10 @@ def main():
 
     # Send heartbeat message every scheduled run
     if GITHUB_EVENT_NAME == "schedule":
-        now = datetime.datetime.now().strftime("%d %b %Y %I:%M %p")
+        utc_now = datetime.datetime.utcnow()
+        ist_now = utc_now + datetime.timedelta(hours=5, minutes=30)
+        now = ist_now.strftime("%d %b %Y %I:%M %p IST")
+
         send_telegram(f"🟢 Bot running\nNo Bonus/Buyback/Split/Right Issue announcements.\n⏰ {now}")
 
 
