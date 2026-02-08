@@ -23,8 +23,8 @@ KEYWORDS = [
     "sub-division",
     "sub division",
     "rights issue",
-    "rights offer",
-    "Advance"
+    "rights offer"
+    
 ]
 
 
