@@ -1,3 +1,8 @@
+from dotenv import load_dotenv
+load_dotenv()
+
+
+
 import requests
 import json
 import datetime
@@ -17,11 +22,14 @@ KEYWORDS = [
     "buyback",
     "buy back",
     "split",
-    "right issue"
-    
-    
-    
+    "stock split",
+    "sub-division",
+    "sub division",
+    "rights issue",
+    "rights offer",
+    "Advance"
 ]
+
 
 API_URL = "https://api.bseindia.com/BseIndiaAPI/api/AnnGetData/w"
 
