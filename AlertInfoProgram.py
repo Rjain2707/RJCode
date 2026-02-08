@@ -180,10 +180,12 @@ def main():
 
     if sent_count == 0:
         log("No new announcements matching keywords.")
-        if GITHUB_EVENT_NAME == "schedule":
-            send_telegram("No new BSE announcements matching your keywords in the last 30 minutes.")
 
-    log(f"Script finished. Total sent: {sent_count}")
+    # Send heartbeat message every scheduled run
+    if GITHUB_EVENT_NAME == "schedule":
+        now = datetime.datetime.now().strftime("%d %b %Y %I:%M %p")
+        send_telegram(f"🟢 Bot running\nNo Bonus/Buyback/Split/Right Issue announcements.\n⏰ {now}")
+
 
 if __name__ == "__main__":
     main()
