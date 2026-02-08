@@ -36,16 +36,9 @@ def log(msg):
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     print(f"[{timestamp}] {msg}")
 
+
 def fetch_bse_announcements():
     today = datetime.datetime.now().strftime("%Y%m%d")
-    params = {
-        "strCat": "-1",
-        "strPrevDate": today,
-        "strScrip": "",
-        "strSearch": "P",
-        "strToDate": today,
-        "strType": "C"
-    }
 
     headers = {
         "User-Agent": "Mozilla/5.0",
@@ -54,16 +47,49 @@ def fetch_bse_announcements():
         "Origin": "https://www.bseindia.com"
     }
 
-    log("Fetching BSE announcements...")
-    response = requests.get(API_URL, headers=headers, params=params)
-    if response.text.startswith("<"):
-        log("BSE blocked request (HTML returned)")
-        raise Exception("BSE blocked request (HTML returned)")
+    all_announcements = []
+    seen_ids = set()
 
-    data = response.json()
-    announcements = data.get("Table", [])
-    log(f"Fetched {len(announcements)} announcements")
-    return announcements
+    log("Fetching BSE announcements (all pages)...")
+
+    for page in range(1, 11):  # scan 10 pages
+        params = {
+            "strCat": "-1",
+            "strPrevDate": today,
+            "strScrip": "",
+            "strSearch": "P",
+            "strToDate": today,
+            "strType": "C",
+            "strPage": str(page)
+        }
+
+        log(f"Fetching page {page}")
+        response = requests.get(API_URL, headers=headers, params=params)
+
+        if response.text.startswith("<"):
+            raise Exception("BSE blocked request")
+
+        data = response.json()
+        table = data.get("Table", [])
+
+        if not table:
+            break
+
+        new_records = 0
+        for item in table:
+            uid = item.get("NEWSID")
+            if uid not in seen_ids:
+                seen_ids.add(uid)
+                all_announcements.append(item)
+                new_records += 1
+
+        if new_records == 0:
+            break
+
+    log(f"Fetched TOTAL {len(all_announcements)} announcements")
+    return all_announcements
+
+
 
 def contains_keyword(text):
     if not text:
