@@ -187,7 +187,7 @@ def main():
         ist_now = utc_now + datetime.timedelta(hours=5, minutes=30)
         now = ist_now.strftime("%d %b %Y %I:%M %p IST")
 
-        send_telegram(f"🟢 Bot running\nNo Bonus/Buyback/Split/Right Issue announcements.\n⏰ {now}")
+        #send_telegram(f"🟢 Bot running\nNo Bonus/Buyback/Split/Right Issue announcements.\n⏰ {now}")
 
 
 if __name__ == "__main__":
