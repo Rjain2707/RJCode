@@ -21,9 +21,9 @@ KEYWORDS = [
     "split",
     "stock split",
     "sub-division",
-    "sub division",
-    "rights issue",
-    "rights offer"
+    "sub division"
+    
+    
     
 ]
 
